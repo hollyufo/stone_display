@@ -1,5 +1,5 @@
 <?php
-require_once "../connection/connection.php";
+
 class Product{
     private $con;
 
@@ -10,7 +10,7 @@ class Product{
     }
     public function find($id){
         try {
-            $stmt = $this->con->prepare("SELECT * FROM products WHERE id=:id LIMIT 1");
+            $stmt = $this->con->prepare("SELECT * FROM products WHERE products.id = :id");
             $stmt->bindParam(":id",$id,PDO::PARAM_INT);
             $stmt->execute();
             
