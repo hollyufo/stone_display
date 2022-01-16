@@ -28,5 +28,13 @@ Auth::routes([
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
-
-Route::get('/test', [App\Http\Controllers\front\ProductController::class,'create']);
+Route::middleware(['auth'])->prefix("/admin")->name("admin.")->group(function () {
+    Route::prefix('/product')->name("product.")->group(function () {
+        Route::get('/', [App\Http\Controllers\back\ProductController::class,'index'])->name("all");
+        Route::get('/add', [App\Http\Controllers\back\ProductController::class,'create'])->name("add");
+        Route::post('/store', [App\Http\Controllers\back\ProductController::class,'store'])->name("add.post");
+        Route::get('/show/{product:id}', [App\Http\Controllers\back\ProductController::class,'show'])->name("show");
+        Route::get('/update/{product:id}', [App\Http\Controllers\back\ProductController::class,'update'])->name("update");
+        Route::get('/delete/{product:id}', [App\Http\Controllers\back\ProductController::class,'destroy'])->name("delete");
+    });
+});
