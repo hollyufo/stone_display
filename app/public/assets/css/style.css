@@ -1,0 +1,54 @@
+.Two{
+    width: 350px;
+}
+.one{
+    display: flex;
+    justify-content: center;
+    margin-top: 60px;
+}
+.three{
+    display: flex;
+    justify-content: center;
+    margin-top: 60px;
+}
+.four{
+    width: 400px;
+}
+img{
+    aspect-ratio: 1;
+}
+
+
+nav[role="navigation"] .flex.justify-between.flex-1.sm\:hidden {
+    display: none;
+}
+nav[role="navigation"] .hidden.sm\:flex-1.sm\:flex.sm\:items-center.sm\:justify-between {
+    display: flex;
+    flex-direction: column-reverse;
+}
+nav[role="navigation"] .hidden.sm\:flex-1.sm\:flex.sm\:items-center.sm\:justify-between:first-child {
+    display: none;
+}
+nav[role="navigation"] .hidden.sm\:flex-1.sm\:flex.sm\:items-center.sm\:justify-between > div:last-child > span {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    box-shadow: none !important;
+}
+nav[role="navigation"] .hidden.sm\:flex-1.sm\:flex.sm\:items-center.sm\:justify-between > div:last-child > span > span[aria-current="page"] > span{
+    padding-top: 0.9rem !important;
+    padding-bottom: 0.9rem !important;
+    background-color: #3a8bcd !important;
+    color: #ffffff;
+}
+nav[role="navigation"] .hidden.sm\:flex-1.sm\:flex.sm\:items-center.sm\:justify-between > div:last-child > span > a[aria-label="&laquo; Previous"]{
+    width: 37px;
+}
+nav[role="navigation"] .hidden.sm\:flex-1.sm\:flex.sm\:items-center.sm\:justify-between > div:last-child > span > a[aria-label="Next &raquo;"]{
+    width: 37px;
+}
+nav[role="navigation"] p.text-sm.text-gray-700.leading-5 {
+    text-align: center;
+    margin-top: 1rem;
+}
