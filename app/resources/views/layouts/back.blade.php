@@ -24,6 +24,9 @@
                 <li class="nav-item">
                   <a class="nav-link" href="{{ route("admin.product.add") }}">Add Product</a>
                 </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="{{ route("admin.categories.add") }}">Add Category</a>
+                </li>
                 {{-- <li class="nav-item">
                   <a class="nav-link" href="#">Pricing</a>
                 </li>

@@ -34,7 +34,17 @@ Route::middleware(['auth'])->prefix("/admin")->name("admin.")->group(function ()
         Route::get('/add', [App\Http\Controllers\back\ProductController::class,'create'])->name("add");
         Route::post('/store', [App\Http\Controllers\back\ProductController::class,'store'])->name("add.post");
         Route::get('/show/{product:id}', [App\Http\Controllers\back\ProductController::class,'show'])->name("show");
-        Route::get('/update/{product:id}', [App\Http\Controllers\back\ProductController::class,'update'])->name("update");
+        Route::get('/edit/{product:id}', [App\Http\Controllers\back\ProductController::class,'edit'])->name("edit");
+        Route::post('/update/{product:id}', [App\Http\Controllers\back\ProductController::class,'update'])->name("update");
         Route::get('/delete/{product:id}', [App\Http\Controllers\back\ProductController::class,'destroy'])->name("delete");
+    });
+    Route::prefix('/categories')->name("categories.")->group(function () {
+        Route::get('/', [App\Http\Controllers\back\CategoryController::class,'index'])->name("all");
+        Route::get('/add', [App\Http\Controllers\back\CategoryController::class,'create'])->name("add");
+        Route::post('/store', [App\Http\Controllers\back\CategoryController::class,'store'])->name("add.post");
+        Route::get('/show/{category:id}', [App\Http\Controllers\back\CategoryController::class,'show'])->name("show");
+        Route::get('/edit/{category:id}', [App\Http\Controllers\back\CategoryController::class,'edit'])->name("edit");
+        Route::post('/update/{category:id}', [App\Http\Controllers\back\CategoryController::class,'update'])->name("update");
+        Route::get('/delete/{category:id}', [App\Http\Controllers\back\CategoryController::class,'destroy'])->name("delete");
     });
 });

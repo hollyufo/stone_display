@@ -15,12 +15,12 @@ class CreateProductsTable extends Migration
     {
         Schema::create('products', function (Blueprint $table) {
             $table->id();
-            $table->string('name', 100)->nullable()->default('text');
-            $table->text('description')->nullable()->default('text');
-            $table->integer('min_order')->unsigned()->nullable()->default(12);
+            $table->string('name', 100)->nullable();
+            $table->text('description')->nullable();
+            $table->integer('min_order')->unsigned()->nullable();
             $table->json('dimentions')->nullable();
             $table->unsignedBigInteger('id_category');
-            $table->text('thumbnail')->nullable()->default('text');
+            $table->text('thumbnail')->nullable();
             $table->json('gallery')->nullable();
             $table->timestamps();
 

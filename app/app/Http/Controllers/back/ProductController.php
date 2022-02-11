@@ -19,7 +19,7 @@ class ProductController extends Controller
         $data = [
             "products" => Product::all()
         ];
-        return view("back.products",$data);
+        return view("back.products.all",$data);
     }
 
     /**
@@ -32,7 +32,7 @@ class ProductController extends Controller
         $data = [
             "categories" => Category::all()
         ];
-        return view("back.products-add",$data);
+        return view("back.products.add",$data);
     }
 
     /**
@@ -86,6 +86,10 @@ class ProductController extends Controller
     public function show(Product $product)
     {
         //
+        $data = [
+            "product" => $product
+        ];
+        return view("back.products.show",$data);
     }
 
     /**
@@ -97,6 +101,11 @@ class ProductController extends Controller
     public function edit(Product $product)
     {
         //
+        $data = [
+            "categories" => Category::all(),
+            "product" => $product
+        ];
+        return view("back.products.edit",$data);
     }
 
     /**
@@ -109,6 +118,36 @@ class ProductController extends Controller
     public function update(Request $request, Product $product)
     {
         //
+        $request->validate([
+            "name" => "required",
+            "description" => "required",
+            "min_order" => "required",
+            "dimentions" => "required",
+            "category" => "required|exists:categories,id",
+            "thumbnail" => "required"
+        ]);
+
+        try {
+            $gallery = [];
+            if($request->file('gallery') != null && !empty($request->file('gallery'))){
+                foreach($request->file('gallery') as $key => $pic){
+                        array_push($gallery,$pic->store("product/gallery","public"));
+                }
+            }
+            $product->update([
+                "name" => $request->input("name"),
+                "description" => $request->input("description"),
+                "min_order" => (int)$request->input("min_order"),
+                "dimentions" => $request->input("dimentions"),
+                "id_category" => $request->input("category"),
+                "thumbnail" => $request->file("thumbnail")->store("product/thumbnails","public"),
+                "gallery" => $gallery
+            ]);
+
+            return redirect()->route("admin.product.all");
+        } catch (Exception $th) {
+            return redirect()->back()->withErrors($th->getMessage)->withInput();
+        }
     }
 
     /**

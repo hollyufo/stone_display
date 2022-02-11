@@ -16,7 +16,7 @@
       <div class="card-body">
         <h5 class="card-title">{{ $product->name }}</h5>
         <p class="card-text">{{ $product->description }}</p>
-        <a href="{{ route("admin.product.update",$product->id) }}" class="btn btn-primary">Edit</a>
+        <a href="{{ route("admin.product.edit",$product->id) }}" class="btn btn-primary">Edit</a>
         <a href="{{ route("admin.product.delete",$product->id) }}" class="btn btn-danger">Delete</a>
       </div>
     </div>
