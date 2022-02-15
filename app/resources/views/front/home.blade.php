@@ -1,9 +1,9 @@
 @extends('layouts.front')
 @section('title','Home')
 @section('css')
-    
+
 @endsection
-@section('content')   
+@section('content')
 <!-- Page Content -->
     <!-- Banner Starts Here -->
     <div class="banner">
@@ -13,7 +13,7 @@
             <div class="caption">
               <h2>Best quality Fossile from Morocco</h2>
               <div class="line-dec"></div>
-              <p>we make different handmade decorations made from stones and different material <strong>50 products</strong> also jewelry made from stones like eye of the tiger or quarts. 
+              <p>we make different handmade decorations made from stones and different material <strong>50 products</strong> also jewelry made from stones like eye of the tiger or quarts.
               <br><br>Check our facebook page <a rel="nofollow" href="https://www.facebook.com">name</a></p>
               <div class="main-button">
                 <a href="#">Order Now!</a>
@@ -40,7 +40,7 @@
               @foreach ($products as $key => $product)
                 <a href="{{ route("front.product",[$product->id,$product->name]) }}">
                   <div class="featured-item">
-                    <img src="{{$product->thumbnail}}" alt="{{$product->name}}">
+                    <img src="{{asset("storage/".$product->thumbnail)}}" alt="{{$product->name}}">
                     <h4>{{$product->name}}</h4>
                   </div>
                 </a>
@@ -57,5 +57,5 @@
     <!-- Subscribe Form Ends Here -->
     @endsection
     @section('js')
-        
+
     @endsection

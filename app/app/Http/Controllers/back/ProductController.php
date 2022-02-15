@@ -17,7 +17,7 @@ class ProductController extends Controller
     public function index()
     {
         $data = [
-            "products" => Product::all()
+            "products" => Product::orderBy("id","DESC")->get()
         ];
         return view("back.products.all",$data);
     }
@@ -73,8 +73,8 @@ class ProductController extends Controller
         } catch (Exception $th) {
             return redirect()->back()->withErrors($th->getMessage)->withInput();
         }
-        
-    
+
+
     }
 
     /**
@@ -123,27 +123,27 @@ class ProductController extends Controller
             "description" => "required",
             "min_order" => "required",
             "dimentions" => "required",
-            "category" => "required|exists:categories,id",
-            "thumbnail" => "required"
+            "category" => "required|exists:categories,id"
         ]);
 
         try {
-            $gallery = [];
-            if($request->file('gallery') != null && !empty($request->file('gallery'))){
-                foreach($request->file('gallery') as $key => $pic){
-                        array_push($gallery,$pic->store("product/gallery","public"));
-                }
-            }
-            $product->update([
-                "name" => $request->input("name"),
-                "description" => $request->input("description"),
-                "min_order" => (int)$request->input("min_order"),
-                "dimentions" => $request->input("dimentions"),
-                "id_category" => $request->input("category"),
-                "thumbnail" => $request->file("thumbnail")->store("product/thumbnails","public"),
-                "gallery" => $gallery
-            ]);
+            $product->name = $request->input("name");
+            $product->description = $request->input("description");
+            $product->min_order = (int)$request->input("min_order");
+            $product->dimentions = $request->input("dimentions");
+            $product->id_category = $request->input("category");
 
+            if($request->file('thumbnail') != null && !empty($request->file('thumbnail'))){
+                $product->thumbnail = $request->file("thumbnail")->store("product/thumbnails","public");
+            }
+            if($request->file('gallery') != null && !empty($request->file('gallery'))){
+                $gallery = [];
+                foreach($request->file('gallery') as $key => $pic){
+                    array_push($gallery,$pic->store("product/gallery","public"));
+                }
+                $product->gallery = $gallery;
+            }
+            $product->save();
             return redirect()->route("admin.product.all");
         } catch (Exception $th) {
             return redirect()->back()->withErrors($th->getMessage)->withInput();

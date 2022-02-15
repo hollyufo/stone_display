@@ -11,9 +11,9 @@ class HomeController extends Controller
     // Home
     public function index()
     {
-        
+
         $data = [
-            "products" => Product::all()
+            "products" => Product::orderBy("id","DESC")->get()
         ];
         return view("front.home",$data);
     }

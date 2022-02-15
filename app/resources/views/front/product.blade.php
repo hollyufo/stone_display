@@ -20,11 +20,11 @@
               <div id="slider" class="flexslider">
                 <ul class="slides">
                   <li>
-                    <img src="{{$product->thumbnail}}" class="img img-responsive w-100" />
+                    <img src="{{asset("storage/".$product->thumbnail)}}" class="img img-responsive w-100" />
                   </li>
                   @foreach ($product->gallery as $key => $value)
                     <li>
-                      <img src="{{$value}}" class="img img-responsive w-100" />
+                      <img src="{{asset("storage/".$value)}}" class="img img-responsive w-100" />
                     </li>
                   @endforeach
                     <!-- items mirrored twice, total of 12 -->
@@ -33,11 +33,11 @@
                 <div id="carousel" class="flexslider">
                   <ul class="slides">
                     <li>
-                      <img src="{{$product->thumbnail}}" class="img img-responsive w-100" />
+                      <img src="{{asset("storage/".$product->thumbnail)}}" class="img img-responsive w-100" />
                     </li>
                     @foreach ($product->gallery as $key => $value)
                       <li>
-                        <img src="{{$value}}" class="img img-responsive w-100" />
+                        <img src="{{ asset("storage/".$value) }}" class="img img-responsive w-100" />
                       </li>
                     @endforeach
                       <!-- items mirrored twice, total of 12 -->
@@ -66,8 +66,8 @@
       </div>
     </div>
     <!-- Single Page Ends Here -->
-    
-    
+
+
     <!-- Similar Starts Here -->
     <div class="featured-items">
       <div class="container">
@@ -83,7 +83,7 @@
               @foreach ($related as $key => $product)
                 <a href="{{ route("front.product",[$product->id,$product->name]) }}">
                   <div class="featured-item">
-                    <img src="{{$product->thumbnail}}" alt="{{$product->name}}">
+                    <img src="{{asset("storage/".$product->thumbnail)}}" alt="{{$product->name}}">
                     <h4>{{$product->name}}</h4>
                   </div>
                 </a>
@@ -94,8 +94,8 @@
       </div>
     </div>
     <!-- Similar Ends Here -->
-    
-    
+
+
     <!-- Subscribe Form Starts Here -->
     <div class="subscribe-form">
       <div class="container">
@@ -114,8 +114,8 @@
                   <div class="row">
                     <div class="col-md-7">
                       <fieldset>
-                        <input name="email" type="text" class="form-control" id="email" 
-                        onfocus="if(this.value == 'Your Email...') { this.value = ''; }" 
+                        <input name="email" type="text" class="form-control" id="email"
+                        onfocus="if(this.value == 'Your Email...') { this.value = ''; }"
                         onBlur="if(this.value == '') { this.value = 'Your Email...';}"
                         value="Your Email..." required="">
                       </fieldset>

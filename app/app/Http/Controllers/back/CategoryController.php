@@ -16,7 +16,7 @@ class CategoryController extends Controller
     public function index()
     {
         $data = [
-            "categories" => Category::all()
+            "categories" => Category::orderBy("id","DESC")->get()
         ];
         return view("back.categories.all",$data);
     }
@@ -29,7 +29,10 @@ class CategoryController extends Controller
     public function create()
     {
         //
-        return view("back.categories.add");
+        $data = [
+            "categories" => Category::orderBy("id","DESC")->get()
+        ];
+        return view("back.categories.add",$data);
     }
 
     /**
@@ -50,7 +53,7 @@ class CategoryController extends Controller
                 "name" => $request->input("name")
             ]);
 
-            return redirect()->route("admin.categories.all");
+            return redirect()->route("admin.categories.add");
         } catch (Exception $th) {
             return redirect()->back()->withErrors($th->getMessage)->withInput();
         }
@@ -104,7 +107,7 @@ class CategoryController extends Controller
                 "name" => $request->input("name")
             ]);
 
-            return redirect()->route("admin.categories.all");
+            return redirect()->route("admin.categories.add");
         } catch (Exception $th) {
             return redirect()->back()->withErrors($th->getMessage)->withInput();
         }
@@ -119,6 +122,6 @@ class CategoryController extends Controller
     public function destroy(Category $category)
     {
         $category->delete();
-        return redirect()->route("admin.categories.all");
+        return redirect()->route("admin.categories.add");
     }
 }

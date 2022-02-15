@@ -24,7 +24,7 @@
         </div>
       </div>
     </div>
-  
+
     <div class="featured container no-gutter">
 
         <div class="row posts">
@@ -32,7 +32,7 @@
               <div id="{{ $product->id }}" class="item new col-md-4">
                 <a href="{{ route("front.product",[$product->id,$product->name]) }}">
                   <div class="featured-item">
-                    <img src="<?= $product['thumbnail'] ?>" alt="<?= $product['name'] ?>">
+                    <img src="{{ asset("storage/".$product['thumbnail']) }}" alt="{{ $product['name'] }}">
                     <h4><?= $product['name'] ?></h4>
                   </div>
                 </a>
